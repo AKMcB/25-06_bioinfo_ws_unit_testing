@@ -1,5 +1,14 @@
 from first.first import greeting
 
+def test_greeting():
+    assert greeting("anne","English")== "Hello anne!"
+
+def test_greeting():
+    assert greeting("anne", "Norwegian")== "Hei anne!"
+
+def test_greeting():
+    assert greeting("anne","_") == "I don't speak your language!"
+
 # write unit tests for the function greeting(name, language) in first/first.py
 # include different test cases by writing different unit tests
 # their names should reflect the test case, e.g. test_greeting_eng() if english is selected
