@@ -18,6 +18,24 @@ def test_greeting_language_wrong_type():
     with pytest.raises(TypeError):
         assert greeting("James", 666) == None
 
+
+from contextlib import nullcontext
+
+@pytest.mark.parametrize(
+    "name, language, exception, output",
+    [
+        ("anne","English", nullcontext(), "Hello anne!"),
+        ("anne","Norwegian", nullcontext(), "Hei anne!"),
+        ("anne","German", nullcontext(), "I don't speak your language!"),
+        ("anne",1, pytest.raises(TypeError), "Hei anne!")
+    ]
+
+)
+def test_greeting(name, language, exception, output):
+    with exception:
+        assert greeting(name, language) == output
+    
+
 # write one unit test to cover all test cases of greeting(name, language) in third/third.py
 # also import nullcontext: from contextlib import nullcontext
 # add parametrize decorator as header to your test function: @pytest.mark.parametrize()
